@@ -1,29 +1,57 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import Layout from '@/layout'
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
-  const routes = [
+const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home
+    path: '/login',
+    name: 'Login',
+    component: () => import('@/views/login')
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/register',
+    name: 'Register',
+    component: () => import('@/views/register')
+  },
+  {
+    path: '/',
+    component: Layout,
+    redirect: '/message',
+    children: [
+      {
+        path: '/message',
+        name:  'Message',
+        component: () => import('@/views/home'),
+        meta: { title: '消息', showHeader: true, showSearch: true, showBackBut: false }
+      },
+      {
+        path: '/contacts',
+        name: 'Contacts',
+        component: () => import('@/views/contacts'),
+        meta: { title: '通讯录', showHeader: true, showSearch: true, showBackBut: false }
+      },
+      {
+        path: '/moments',
+        name: 'Moments',
+        component: () => import('@/views/moments'),
+        meta: { title: '发现', showHeader: true, showSearch: false, showBackBut: false }
+      },
+      {
+        path: '/personal',
+        name: 'Personal',
+        component: () => import('@/views/personal'),
+        meta: { title: '我', showHeader: false, showSearch: false, showBackBut: false }
+      }
+    ]
   }
-]
+];
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
-})
+});
 
-export default router
+export default router;
