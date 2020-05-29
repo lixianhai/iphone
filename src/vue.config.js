@@ -1,13 +1,22 @@
 module.exports = {
-  chainWebpack: config => {
-    const svgRule = config.module.rule("svg");
-    svgRule.uses.clear();
-    svgRule
-      .use("svg-sprite-loader")
-      .loader("svg-sprite-loader")
-      .options({
-        symbolId: "icon-[name]",
-        include: ["./src/icons"]
-      });
+  /**
+   * You will need to set publicPath if you plan to deploy your site under a sub path,
+   * for example GitHub Pages. If you plan to deploy your site to https://foo.github.io/bar/,
+   * then publicPath should be set to "/bar/".
+   * In most cases please use '/' !!!
+   * Detail: https://cli.vuejs.org/config/#publicpath
+   */
+  publicPath: './',
+  outputDir: 'dist',
+  assetsDir: 'static',
+  productionSourceMap: false,
+  devServer: {
+    port: port,
+    open: true,
+    overlay: {
+      warnings: false,
+      errors: true
+    },
+    proxy: {}
   }
-};
+}
