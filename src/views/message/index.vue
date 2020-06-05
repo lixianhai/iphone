@@ -1,7 +1,7 @@
 <template>
   <div style="width: 100%;">
     <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
-      <router-link to="login">
+      <router-link to="/list">
         <van-swipe-cell>
         <van-card
           default="w21212"

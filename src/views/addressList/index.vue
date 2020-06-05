@@ -161,9 +161,6 @@ export default {
       count: 0,
       isLoading: false,
     };
-  },
-  methods: {
-
   }
 }
 </script>
@@ -174,6 +171,7 @@ export default {
   display: flex;
   padding: 0 .3rem;
   align-items: center;
+  background: #fff;
   .img_wrap {
     width: 1.2rem;
     height: 1.2rem;

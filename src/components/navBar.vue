@@ -1,25 +1,25 @@
 <template>
   <div>
     <van-tabbar v-model="active" @change="changeNav">
-      <van-tabbar-item :badge="3" to="/">
+      <van-tabbar-item :badge="3" to="/message">
         <span>消息</span>
         <template #icon="props">
           <img :src="props.active ? icon.home_active : icon.home_inactive " />
         </template>
       </van-tabbar-item>
-      <van-tabbar-item to="/contacts">
+      <van-tabbar-item to="/addressList">
         <span>通讯录</span>
         <template #icon="props">
           <img :src="props.active ? icon.contacts_active : icon.contacts_inactive " />
         </template>
       </van-tabbar-item>
-      <van-tabbar-item to="/moments">
+      <van-tabbar-item to="/find">
         <span>发现</span>
         <template #icon="props">
           <img :src="props.active ? icon.moments_active : icon.moments_inactive " />
         </template>
       </van-tabbar-item>
-      <van-tabbar-item to="/personal">
+      <van-tabbar-item to="/me">
         <span>我</span>
         <template #icon="props">
           <img :src="props.active ? icon.me_active : icon.me_inactive " />

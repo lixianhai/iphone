@@ -40,7 +40,6 @@
 </style>
 
 <script>
-import Cookies from 'js-cookie';
 
 export default {
   data() {

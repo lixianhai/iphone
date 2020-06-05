@@ -24,7 +24,7 @@ router.beforeEach((to, form, next) => {
 		} else {
 			if (userInfo.length === 0) {
         let user_info = Cookies.get('user_info')
-				store.commit('SET_USERINFO', user_info)
+				store.commit('setUserInfo', user_info)
 				next('/')
       } else {
         next()
@@ -45,4 +45,4 @@ const vue = new Vue({
   render: h => h(App)
 }).$mount('#app')
 
-// export default vue
+export default vue

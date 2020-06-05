@@ -1,30 +1,26 @@
 <template>
   <div class="app">
-    <van-sticky>
-      <van-row class="header_wrap">
-        <van-col :span="4"></van-col>
-        <van-col :span="16"></van-col>
-        <van-col :span="4">
-          <router-link to="/login">
-            <div class="img_wrap">
-              <img src="../../assets/xiangji.png">
-            </div>
-          </router-link>
-        </van-col>
-      </van-row>
-    </van-sticky>
-    <div class="user_info mb">
+    <van-row class="header_wrap">
+      <van-col :span="4"></van-col>
+      <van-col :span="16"></van-col>
+      <van-col :span="4">
+        <router-link to="/login">
+          <div class="img_wrap">
+            <img src="../../assets/xiangji.png">
+          </div>
+        </router-link>
+      </van-col>
+    </van-row>
+    <div @click="userInfo" class="user_info mb">
       <div class="user_img">
-        <div>
-          <img src="../../assets/touxiang.jpg">
-        </div>
+        <img :src="userHeadPortrait">
       </div>
       <div class="text_info">
-        <div class="name">来两根儿油炸淀粉香肠</div>
+        <div class="name">asasasa</div>
         <div class="wechatNum">
           <div>
             微信号：
-            <span>LI1792786454</span>
+            <span>{{ wechatNumber }}</span>
           </div>
           <div>
             <van-icon name="arrow" />
@@ -128,9 +124,35 @@
   </div>
 </template>
 
+<script>
+import store from '@/store'
+
+export default {
+  data() {
+    return {
+
+    }
+  },
+  methods: {
+    userInfo() {
+      this.$router.push('/me/userInfo')
+    }
+  },
+  computed: {
+    wechatNumber() {
+      return store.getters.wechatNumber || localStorage.getItem('wechatNumber')
+    },
+    userHeadPortrait() {
+      return this.$store.state.userHeadPortraitPath || localStorage.getItem('userHeadPortraitPath')
+    }
+  }
+}
+</script>
+
 <style lang="less" scoped>
 .app {
   background: #ededed;
+  padding-bottom: .3rem;
 }
 .mb {
   margin-bottom: .3rem;
@@ -156,8 +178,8 @@
     }
   }
   .img_wrap {
-    width: .7rem;
-    height: .7rem;
+    width: .8rem;
+    height: .8rem;
     img {
       width: 100%;
       height: 100%;
@@ -170,7 +192,7 @@
 .user_info {
   display: flex;
   background: #fff;
-  padding: 1rem 0;
+  padding: .5rem 0 1rem 0;
   .user_img {
     width: 1.8rem;
     height: 1.8rem;

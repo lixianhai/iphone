@@ -3,11 +3,9 @@
     <Header v-show="isHeader"></Header>
     <Search v-show="isSearch"></Search>
     <transition :name="direction">
-      <keep-alive>
-         <router-view />
-      </keep-alive>
+      <router-view />
     </transition>
-    <Nvabar></Nvabar>
+    <Nvabar v-show="isNavbar"></Nvabar>
   </div>
 </template>
 
@@ -26,18 +24,27 @@ export default {
     return {
       isHeader: true,
       isSearch: true,
-      transitionName: 'slide-right'
+      isNavbar: true,
+      direction: ''
     }
   },
   watch: {
-    $route(to) {
+    $route(to, from) {
       this.isHeader = to.meta.showHeader
       this.isSearch = to.meta.showSearch
-    }
-  },
-  computed: {
-    direction() {
-      return this.$store.state.ROUTER_DIRECTION
+      this.isNavbar = to.meta.showNavbar
+      
+      if (to.meta.index > from.meta.index) {
+        this.direction = 'slide-left'
+      } else if (to.meta.index < from.meta.index) {
+        this.direction = 'slide-right'
+      } else if (to.meta.index === 'top') {
+        this.direction = 'slide-top'
+      } else if (to.meta.index === 'bottom') {
+        this.direction = 'slide-bottom'
+      }  else {
+        this.direction = ''
+      }
     }
   }
 }

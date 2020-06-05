@@ -2,7 +2,7 @@
   <div>
     <van-sticky>
       <van-row class="header_wrap">
-        <van-col :span="4">
+        <van-col @click="goBack" :span="4">
           <van-icon v-show="isBack" name="arrow-left" />
         </van-col>
         <van-col :span="16">
@@ -10,14 +10,9 @@
         </van-col>
         <van-col :span="4">
           <van-icon v-show="pathName === '/message'" name="add-o" />
-          <router-link v-show="pathName === '/contacts'" to="/login">
-            <div class="img_wrap">
+          <router-link v-show="pathName === '/addressList/index'" to="/addressList/addFriends">
+            <div v-show="pathName === '/addressList/index'" class="img_wrap">
               <img src="../assets/addFriend.png">
-            </div>
-          </router-link>
-          <router-link v-show="pathName === '/personal'" to="/login">
-            <div class="img_wrap">
-              <img src="../assets/xiangji.png">
             </div>
           </router-link>
         </van-col>
@@ -45,6 +40,11 @@ export default {
       this.pathName = path
     }
   },
+  methods: {
+    goBack() {
+      this.$router.go(-1)
+    }
+  }
 }
 </script>
 
